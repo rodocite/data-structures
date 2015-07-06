@@ -30,13 +30,6 @@ Graph.prototype.removeEdge = function(fromNode, toNode){
   delete this.universe[toNode].edges[fromNode];
 };
 
-Graph.prototype.isolate = function(node) {
-  var context = this;
-  _.each(this.universe[node].edges, function(edge) {
-    context.removeEdge(node, edge);
-  });
-};
-
 Graph.prototype.forEachNode = function(cb){
   _.each(this.universe, function(node, nodeName) {
     cb(nodeName);
@@ -69,6 +62,14 @@ Graph.prototype.convertToRouter = function(targetNode) {
   var context = this;
   this.forEachNode(function(node) {
     context.addEdge(node, targetNode);
+  });
+};
+
+// Removes all connections from a node
+Graph.prototype.isolate = function(node) {
+  var context = this;
+  _.each(this.universe[node].edges, function(edge) {
+    context.removeEdge(node, edge);
   });
 };
 
