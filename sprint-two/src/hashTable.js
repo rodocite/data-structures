@@ -19,7 +19,7 @@ HashTable.prototype.insert = function(k, v){
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  var temp = 'Value not found';
+  var temp = null;
   // Search through bucket
     // Search through array of tuples within bucket index
       // If k is found within a tuple
@@ -52,6 +52,8 @@ HashTable.prototype.remove = function(k){
       });
   });
 };
+
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
